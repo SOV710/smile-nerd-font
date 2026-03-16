@@ -1,61 +1,63 @@
 # Smile Nerd Font Mono
 
+**[English](README_en.md)** | 中文
+
 ![Font Preview](https://preview.github.sov710.org/smile-nerd-font/preview.png)
 
-A composite font combining **FiraCode Nerd Font Mono** (Latin, symbols, Nerd Font icons, ligatures) with **LXGW Wenkai Mono** (CJK glyphs). The `www` triple-ligature from FiraCode is automatically disabled during the build.
+一款合成字体，将 **FiraCode Nerd Font Mono** 的拉丁字母、符号、Nerd Font 图标及编程连字与 **LXGW Wenkai Mono**（霞鹜文楷等宽）的 CJK 字形合二为一。构建过程中自动禁用 FiraCode 的 `www` 三字连字。
 
-## Weights
+## 字重
 
-Weight mappings are defined in `config.toml` and enforced as Make dependencies in `Makefile`:
+字重映射定义在 `config.toml` 中，并在 `Makefile` 中作为 Make 依赖执行：
 
-| Output | FiraCode Source | LXGW Source |
-|--------|----------------|-------------|
+| 输出文件 | FiraCode 来源 | LXGW 来源 |
+|----------|--------------|-----------|
 | SmileNerdFontMono-Regular.ttf | FiraCodeNerdFontMono-Regular | LXGWWenKaiMono-Medium |
 | SmileNerdFontMono-Light.ttf | FiraCodeNerdFontMono-Light | LXGWWenKaiMono-Regular |
 
-## Prerequisites
+## 前置条件
 
 - Python >= 3.12
 - [uv](https://docs.astral.sh/uv/)
 - GNU Make
-- [Typst](https://typst.app/) >= 0.14 (optional, only needed to generate preview image)
+- [Typst](https://typst.app/) >= 0.14（可选，仅生成预览图时需要）
 
-## Setup
+## 初始化
 
 ```sh
 uv sync
 ```
 
-## Build
+## 构建
 
 ```sh
-make all            # merge CJK glyphs + patch www ligature
-make preview        # generate HTML glyph grid for CJK Unified (U+4E00..U+9FFF)
-make live-preview   # generate interactive live text preview (both weights)
-make clean          # remove build/ and preview/
+make all            # 合并 CJK 字形 + 修补 www 连字
+make preview        # 生成 CJK 统一汉字 (U+4E00..U+9FFF) 的 HTML 字形网格
+make live-preview   # 生成交互式实时文本预览（包含两个字重）
+make clean          # 清理 build/ 和 preview/
 ```
 
-Output fonts are written to `build/`. Preview HTML files are written to `preview/`.
+输出字体写入 `build/`，预览 HTML 写入 `preview/`。
 
-To generate the preview image (requires Typst):
+生成预览图（需要 Typst）：
 
 ```sh
 typst compile --font-path ./build preview.typ preview.png --ppi 288
-oxipng -o max preview.png  # optional
+oxipng -o max preview.png  # 可选
 ```
 
-## Scripts
+## 脚本说明
 
-| Script | Purpose |
-|--------|---------|
-| `scripts/merge.py` | Merge CJK glyphs from LXGW Wenkai into FiraCode Nerd Font Mono |
-| `scripts/patch_ligatures.py` | Disable the `www` triple-ligature (modifies font in-place) |
-| `scripts/render_preview.py` | Generate HTML glyph grid preview pages |
-| `scripts/gen_live_preview.py` | Generate interactive live text preview with base64-embedded fonts |
+| 脚本 | 用途 |
+|------|------|
+| `scripts/merge.py` | 将 LXGW Wenkai 的 CJK 字形合并到 FiraCode Nerd Font Mono |
+| `scripts/patch_ligatures.py` | 禁用 `www` 三字连字（原地修改字体文件） |
+| `scripts/render_preview.py` | 生成 HTML 字形网格预览页 |
+| `scripts/gen_live_preview.py` | 生成带 base64 内嵌字体的交互式实时预览页 |
 
 ### merge.py
 
-Reads weight configuration from `config.toml`. Accepts `--weight regular` or `--weight light`.
+从 `config.toml` 读取字重配置，接受 `--weight regular` 或 `--weight light`。
 
 ```sh
 uv run python scripts/merge.py --weight regular
@@ -63,7 +65,7 @@ uv run python scripts/merge.py --weight regular
 
 ### patch_ligatures.py
 
-Takes a single positional argument: the TTF file path to patch in-place.
+接受一个位置参数：要原地修补的 TTF 文件路径。
 
 ```sh
 uv run python scripts/patch_ligatures.py build/SmileNerdFontMono-Regular.ttf
@@ -71,7 +73,7 @@ uv run python scripts/patch_ligatures.py build/SmileNerdFontMono-Regular.ttf
 
 ### render_preview.py
 
-Generates an HTML glyph grid with per-codepoint cells. Fonts are referenced via relative paths (copies font files next to the output HTML). Supports optional `--compare` for side-by-side two-font comparison. `--range` can be repeated for multiple Unicode ranges.
+生成逐码点单元格的 HTML 字形网格。字体通过相对路径引用（会将字体文件复制到输出 HTML 旁边）。支持 `--compare` 进行双字体左右对比，`--range` 可重复指定多个 Unicode 范围。
 
 ```sh
 uv run python scripts/render_preview.py \
@@ -88,7 +90,7 @@ uv run python scripts/render_preview.py \
 
 ### gen_live_preview.py
 
-Generates a self-contained HTML page with base64-embedded fonts for interactive text preview. Accepts one or more `--fonts` arguments. When multiple fonts are provided, a dropdown allows switching between them.
+生成自包含的 HTML 页面，字体以 base64 内嵌，用于交互式文本预览。接受一个或多个 `--fonts` 参数，多字体时提供下拉框切换。
 
 ```sh
 uv run python scripts/gen_live_preview.py \
@@ -96,8 +98,8 @@ uv run python scripts/gen_live_preview.py \
   --output preview/live.html
 ```
 
-## License
+## 许可证
 
-Upstream font licenses apply. See the respective projects for details:
+适用上游字体各自的许可证，详见：
 - [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 - [LXGW Wenkai](https://github.com/lxgw/LxgwWenKai)
