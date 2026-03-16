@@ -4,7 +4,7 @@ WEIGHTS := regular light
 MERGED  := $(patsubst %,build/SmileNerdFontMono-%.ttf,Regular Light)
 PATCHED := $(MERGED)
 
-.PHONY: all clean merge patch preview
+.PHONY: all clean merge patch preview live-preview
 
 all: merge patch
 
@@ -25,6 +25,12 @@ patch: merge
 preview: patch
 	@mkdir -p preview
 	$(PYTHON) scripts/render_preview.py --font build/SmileNerdFontMono-Regular.ttf --range 4E00:9FFF --output preview/cjk-regular.html
+
+live-preview: patch
+	@mkdir -p preview
+	$(PYTHON) scripts/gen_live_preview.py \
+		--fonts build/SmileNerdFontMono-Regular.ttf build/SmileNerdFontMono-Light.ttf \
+		--output preview/live.html
 
 clean:
 	rm -rf build/ preview/
