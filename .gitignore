@@ -10,5 +10,8 @@ __pycache__/
 # Virtual environment
 .venv/
 
+# preview image
+preview.png
+
 # UV lock is committed (do not ignore)
 # uv.lock
