@@ -10,11 +10,11 @@ all: merge patch
 
 merge: $(MERGED)
 
-build/SmileNerdFontMono-Regular.ttf: assets/FiraCode/FiraCodeNerdFontMono-Regular.ttf assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf scripts/merge.py config.toml
+build/SmileNerdFontMono-Regular.ttf: assets/FiraCode/FiraCodeNerdFontMono-Regular.ttf assets/lxgw-wenkai/LXGWWenKaiMono-Medium.ttf scripts/merge.py config.toml
 	@mkdir -p build
 	$(PYTHON) scripts/merge.py --weight regular
 
-build/SmileNerdFontMono-Light.ttf: assets/FiraCode/FiraCodeNerdFontMono-Light.ttf assets/lxgw-wenkai/LXGWWenKaiMono-Light.ttf scripts/merge.py config.toml
+build/SmileNerdFontMono-Light.ttf: assets/FiraCode/FiraCodeNerdFontMono-Light.ttf assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf scripts/merge.py config.toml
 	@mkdir -p build
 	$(PYTHON) scripts/merge.py --weight light
 
