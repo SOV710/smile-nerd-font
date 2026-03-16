@@ -1,0 +1,35 @@
+[font]
+family_name = "Smile Nerd Font Mono"
+version = "0.1.0"
+
+[weights.regular]
+firacode = "assets/FiraCode/FiraCodeNerdFontMono-Regular.ttf"
+lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf"
+output = "build/SmileNerdFontMono-Regular.ttf"
+subfamily = "Regular"
+weight_class = 400
+
+[weights.light]
+firacode = "assets/FiraCode/FiraCodeNerdFontMono-Light.ttf"
+lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Light.ttf"
+output = "build/SmileNerdFontMono-Light.ttf"
+subfamily = "Light"
+weight_class = 300
+
+# Unicode ranges to extract from LXGW Wenkai Mono
+[unicode_ranges]
+cjk_unified = "4E00:9FFF"
+cjk_ext_a = "3400:4DBF"
+cjk_ext_b = "20000:2A6DF"
+cjk_compat_ideographs = "F900:FAFF"
+bopomofo = "3100:312F"
+bopomofo_ext = "31A0:31BF"
+cjk_radicals_supplement = "2E80:2EFF"
+kangxi_radicals = "2F00:2FDF"
+cjk_symbols_punctuation = "3000:303F"
+halfwidth_fullwidth = "FF00:FFEF"
+enclosed_cjk = "3200:32FF"
+cjk_compatibility = "3300:33FF"
+kanbun = "3190:319F"
+cjk_strokes = "31C0:31EF"
+ideographic_description = "2FF0:2FFF"
