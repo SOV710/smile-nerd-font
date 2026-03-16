@@ -4,14 +4,14 @@ version = "0.1.0"
 
 [weights.regular]
 firacode = "assets/FiraCode/FiraCodeNerdFontMono-Regular.ttf"
-lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf"
+lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Medium.ttf"
 output = "build/SmileNerdFontMono-Regular.ttf"
 subfamily = "Regular"
 weight_class = 400
 
 [weights.light]
 firacode = "assets/FiraCode/FiraCodeNerdFontMono-Light.ttf"
-lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Light.ttf"
+lxgw = "assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf"
 output = "build/SmileNerdFontMono-Light.ttf"
 subfamily = "Light"
 weight_class = 300
