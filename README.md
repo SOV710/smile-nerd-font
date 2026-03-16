@@ -1,5 +1,7 @@
 # Smile Nerd Font Mono
 
+![Font Preview](https://preview.github.sov710.org/smile-nerd-font/preview.png)
+
 A composite font combining **FiraCode Nerd Font Mono** (Latin, symbols, Nerd Font icons, ligatures) with **LXGW Wenkai Mono** (CJK glyphs). The `www` triple-ligature from FiraCode is automatically disabled during the build.
 
 ## Weights
@@ -16,6 +18,7 @@ Weight mappings are defined in `config.toml` and enforced as Make dependencies i
 - Python >= 3.12
 - [uv](https://docs.astral.sh/uv/)
 - GNU Make
+- [Typst](https://typst.app/) >= 0.14 (optional, only needed to generate preview image)
 
 ## Setup
 
@@ -33,6 +36,13 @@ make clean          # remove build/ and preview/
 ```
 
 Output fonts are written to `build/`. Preview HTML files are written to `preview/`.
+
+To generate the preview image (requires Typst):
+
+```sh
+typst compile --font-path ./build preview.typ preview.png --ppi 288
+oxipng -o max preview.png  # optional
+```
 
 ## Scripts
 
