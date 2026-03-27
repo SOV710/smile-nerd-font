@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## Project overview
 
 Smile Nerd Font Mono is a composite font build system. It merges CJK glyphs from LXGW Wenkai Mono into FiraCode Nerd Font Mono, then patches out the `www` ligature.
@@ -71,6 +73,12 @@ Defines:
 
 **Important:** `merge.py` reads font paths from `config.toml`. The Makefile has corresponding dependency lines that must be kept in sync manually.
 
+## Setup
+
+```sh
+uv sync
+```
+
 ## Build targets
 
 - `make all` — runs `merge` then `patch`
@@ -79,6 +87,31 @@ Defines:
 - `make preview` — generates glyph grid HTML for CJK Unified range
 - `make live-preview` — generates interactive live text preview with both weights
 - `make clean` — removes `build/` and `preview/`
+
+To generate the preview PNG (requires [Typst](https://typst.app/) >= 0.14, optional):
+
+```sh
+typst compile --font-path ./build preview.typ preview.png --ppi 288
+```
+
+### Running scripts directly
+
+```sh
+uv run python scripts/merge.py --weight regular
+uv run python scripts/patch_ligatures.py build/SmileNerdFontMono-Regular.ttf
+
+# Glyph grid with optional side-by-side comparison
+uv run python scripts/render_preview.py \
+  --font build/SmileNerdFontMono-Regular.ttf \
+  --range 4E00:9FFF \
+  --output preview/cjk.html
+
+uv run python scripts/render_preview.py \
+  --font build/SmileNerdFontMono-Regular.ttf \
+  --compare assets/lxgw-wenkai/LXGWWenKaiMono-Regular.ttf \
+  --range 4E00:4EFF \
+  --output preview/compare.html
+```
 
 ## Coding conventions
 
